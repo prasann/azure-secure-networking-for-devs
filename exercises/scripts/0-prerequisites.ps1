@@ -174,8 +174,6 @@ if ($SkipJumpbox) {
         -SubnetName $env:ASNFD_DEFAULT_SNET_NAME_HUB
 }
 
-.\store-env-vars.ps1
-
 if ($SkipCodeDeployment) {
     Write-Output "`nSkipping code deployment"
 } else {

@@ -7,10 +7,10 @@ if (Test-Path -Path "env.json") {
 
     # Set environment variables
     foreach ($key in $envVars.PSObject.Properties.Name) {
-        $env:$key = $envVars.$key
+        Set-Item -Path "Env:$key" -Value $envVars.$key
     }
 
     Write-Output "`nEnvironment variables loaded from env.json"
 } else {
-    Write-Error "env-vars.json file not found"
+    Write-Error "env.json file not found"
 }
