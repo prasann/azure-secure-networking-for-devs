@@ -29,7 +29,7 @@ Now, on to some D-N-S-ing (if that's not a word, it darn well should be).
     > DNS zones are a global resource, so you only need to create them once, but they need to reside in a resource group.
     >
     > You created them in the hub - **H-U-B! That spells hub!** - resource group, right? Please say you did.
-
+[Steps to create Private DNS Zones in azure portal](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal)
 1. Link the created DNS zones to **all three** virtual networks with [virtual network links](https://learn.microsoft.com/azure/dns/private-dns-virtual-network-links)
     * There's no official naming recommendation, but this one works: `<Virtual network name>-<DNS zone name>` with dots replaced with dashes e.g., `vnet-{team name}-dev-eu-privatelink-azurewebsites-net`
 
