@@ -28,6 +28,8 @@ By default the Firewall allows no traffic. You need to create rules to allow tra
 
 > [Azure Firewall SKU comparison](https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku).
 
+[Steps to configure firewall from azure portal](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal)
+
 ## Routing
 
 The firewall is not used yet, so route all Internet traffic through it from all virtual networks.
@@ -39,6 +41,8 @@ The firewall is not used yet, so route all Internet traffic through it from all 
 1. Via the jumpbox verify that all Internet requests are denied.
 
 > Note: a route table can only be associated with a subnet in the same virtual network. This means that you need to create a route table for each virtual network.
+
+[Steps to create route table from azure portal](https://learn.microsoft.com/en-us/azure/virtual-network/manage-route-table)
 
 ## Firewall rules
 
