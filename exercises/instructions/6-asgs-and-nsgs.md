@@ -19,18 +19,14 @@ The goal of this task sounds simple: For both EU and US storage accounts: Allow 
 
 To start off with:
 
-1. Create a network security group in EU resource group and location
-
-    [Steps to create NSG from Azure portal](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-network-security-group)
-
-1. Create an application security group for storage account in EU resource group and location, and associate it with the private endpoint of the storage account
-    [Steps to create ASG from Azure portal](https://learn.microsoft.com/en-us/azure/private-link/configure-asg-private-endpoint?tabs=portal#create-a-private-endpoint-with-an-asg)
-    
-1. Create a new [network security group rule (NSG)](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules) to deny all traffic to the storage account using the newly created ASG
-1. Verify that the app service no longer can access the storage account using the `list_blobs` endpoint
-1. Create a new security group rule to allow access only from the app service in the region
-1. Verify that the app service can again access the storage account
-1. Rinse and repeat for the US region
+1. Create an application security group for storage account in EU resource group and location, and associate it with the private endpoint of the storage account [Associate ASG to a Private Endpoint](https://learn.microsoft.com/en-us/azure/private-link/configure-asg-private-endpoint?tabs=portal#associate-an-asg-with-an-existing-private-endpoint)
+2. Create a network security group (NSG) in EU resource group and location [Steps to create NSG from Azure portal](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-network-security-group)
+3. Update the EU default (storage) subnet's `Network Security Group` with the newly created NSG.
+4. Create a new [network security group rule (NSG)](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules) to deny all traffic to the storage account using the newly created ASG
+5. Verify that the app service no longer can access the storage account using the `list_blobs` endpoint
+6. Create a new security group rule to allow access only from the app service in the region
+7. Verify that the app service can again access the storage account
+8. Rinse and repeat for the US region
 
 > Naming recommendations:
 >
