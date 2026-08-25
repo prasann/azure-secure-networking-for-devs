@@ -3,7 +3,7 @@
 param(
     [string]$TeamName = $env:TEAM_NAME,
     [string]$EuLocation = $(if ($env:EU_LOCATION) { $env:EU_LOCATION } else { "westeurope" }),
-    [string]$UsLocation = $(if ($env:US_LOCATION) { $env:US_LOCATION } else { "eastus2" }),
+    [string]$UsLocation = $(if ($env:US_LOCATION) { $env:US_LOCATION } else { "westus2" }),
     [string]$HubLocation = $(if ($env:HUB_LOCATION) { $env:HUB_LOCATION } else { "swedencentral" }),
     [string]$JumpboxAdminUsername = "jumpboxuser",
     [string]$JumpboxAdminPassword = "JumpboxPassword123!",
