@@ -23,7 +23,8 @@ Write-Output "`nCreating firewall ${FirewallName}..."
 az network firewall create `
     --name $FirewallName `
     --resource-group $ResourceGroupName `
-    --location $Location
+    --location $Location `
+    --tier Standard
 
 Write-Output "`nCreating public IP address for firewall..."
 

@@ -63,7 +63,10 @@ for ($i = 0; $i -lt 3; $i++) {
         --resource-group $ResourceGroupNames[$i] `
         --location $Locations[$i] `
         --kind StorageV2 `
-        --sku Standard_LRS
+        --sku Standard_LRS `
+        --min-tls-version TLS1_2 `
+        --allow-blob-public-access false `
+        --allow-shared-key-access false
 }
 
 $AppServicePlanSku = "B1"
@@ -97,7 +100,7 @@ for ($i = 0; $i -lt 2; $i++) {
         --name $AppServiceNames[$i] `
         --resource-group $ResourceGroupNames[$i] `
         --plan $AppServicePlanNames[$i] `
-        --runtime PYTHON:3.9
+        --runtime "PYTHON:3.12"
 }
 
 Write-Output "`nEnabling web app build automation and configuring app settings..."
@@ -112,6 +115,15 @@ az webapp config appsettings set `
     --name $AppServiceNames[1] `
     --resource-group $ResourceGroupNames[1] `
     --settings SCM_DO_BUILD_DURING_DEPLOYMENT=true TEAM_NAME=$TeamName LOCATION=us
+
+Write-Output "`nEnforcing HTTPS-only access for app services..."
+# https://learn.microsoft.com/cli/azure/webapp?view=azure-cli-latest#az-webapp-update()
+for ($i = 0; $i -lt 2; $i++) {
+    az webapp update `
+        --name $AppServiceNames[$i] `
+        --resource-group $ResourceGroupNames[$i] `
+        --https-only true
+}
 
 for ($i = 0; $i -lt 2; $i++) {
     $AppServiceName = $AppServiceNames[$i]

@@ -16,8 +16,11 @@ $JumpboxNicName = "nic-vm-${TeamName}-${Environment}-hub"
 $JumpboxVmName = "vm${TeamName}hub"  # Max 15 characters for Windows machines
 $JumpboxOsDiskName = "vmdisk-${TeamName}-${Environment}-hub"
 
-# To list available VMs, run command "az vm image list --offer Windows-11 --all --output table"
-$JumpboxVmImage = "MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.4037.240811" # URN format for '--image': "Publisher:Offer:Sku:Version"
+# To list available Windows 11 images/SKUs, run: "az vm image list --publisher MicrosoftWindowsDesktop --offer windows-11 --all --output table"
+# Use ":latest" for the version so the newest patched image is always selected. Pinned build numbers get delisted over time and break VM creation.
+# NOTE: Windows 11 (client) images require a subscription eligible for Windows client in Azure (e.g. Visual Studio / MSDN, or Enterprise dev/test).
+#       If your subscription is not eligible, switch to a Windows Server image, e.g. "MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest".
+$JumpboxVmImage = "MicrosoftWindowsDesktop:windows-11:win11-24h2-pro:latest" # URN format for '--image': "Publisher:Offer:Sku:Version"
 
 Write-Output "`nCreating network security group (NSG) for jumpbox..."
 # https://learn.microsoft.com/cli/azure/network/nsg?view=azure-cli-latest#az-network-nsg-create()

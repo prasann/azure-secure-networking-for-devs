@@ -13,7 +13,7 @@ az network vnet create `
     --location $location `
     --address-prefix 10.0.0.0/16 `
     --subnet-name snet-web-dev-${location} `
-    --subnet-prefix 10.0.0.0/24 `
+    --subnet-prefix 10.0.0.0/24
 
 az network vnet subnet update `
     --name snet-web-dev-${location} `
@@ -83,8 +83,8 @@ az network vnet subnet create `
     --resource-group $resourceGroup `
     --vnet-name vnet-hub-dev-${location} `
     --address-prefix 10.1.1.64/26 `
-    --disable-private-endpoint-network-policies true `
-    --disable-private-link-service-network-policies true
+    --private-endpoint-network-policies Disabled `
+    --private-link-service-network-policies Disabled
 
 az network firewall create `
     --name fw-hub-dev-${location} `

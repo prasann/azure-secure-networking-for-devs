@@ -29,4 +29,9 @@ if ($HubLocation.Length -eq 0) {
     -ResourceGroupName $env:ASNFD_RESOURCE_GROUP_NAME_HUB `
     -VnetName $env:ASNFD_VNET_NAME_HUB
 
-# TODO: Routing
+# Routing: force all egress from the workload subnets through the firewall
+.\subscripts\5-2-routing.ps1 `
+    -TeamName $TeamName `
+    -EuLocation $env:EU_LOCATION `
+    -UsLocation $env:US_LOCATION `
+    -HubLocation $HubLocation
