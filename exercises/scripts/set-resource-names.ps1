@@ -2,9 +2,9 @@
 
 param(
     [string]$TeamName = $env:TEAM_NAME,
-    [string]$EuLocation = $env:EU_LOCATION,
-    [string]$UsLocation = $env:US_LOCATION,
-    [string]$HubLocation = $env:HUB_LOCATION,
+    [string]$EuLocation = $(if ($env:EU_LOCATION) { $env:EU_LOCATION } else { "westeurope" }),
+    [string]$UsLocation = $(if ($env:US_LOCATION) { $env:US_LOCATION } else { "eastus2" }),
+    [string]$HubLocation = $(if ($env:HUB_LOCATION) { $env:HUB_LOCATION } else { "swedencentral" }),
     [string]$Environment = "dev"
 )
 
